@@ -1,0 +1,27 @@
+<!-- <#% console.log(collection) %> -->
+
+<thead>
+	<th colspan="2">Street</th>
+	<th>From</th>
+	<th >To</th>
+</thead>
+
+<tbody>
+
+	<% _.chain(collection).sortBy(function(m){ return m.feature.STREET; }).each(function(m){
+		%>
+		<tr id="rr-<%= m.project_id %>" class="rr">
+
+			<td>
+				<a href="<%= m.project_path %>" class="btn btn-default btn-xs">
+					<i class="fa fa-fw fa-map-marker"></i>
+				</a>
+			</td>
+			<td><%= m.feature.STREET %></td>
+			<td><%= m.feature.FRSTNM %></td>
+			<td><%= m.feature.TOSTNM %></td>
+		</tr>
+		<%
+	}); %>
+
+</tbody>
