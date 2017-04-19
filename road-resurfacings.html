@@ -38,4 +38,20 @@ permalink: /road-resurfacings/
 <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
 <script src="https://js.arcgis.com/4.3/"></script>
 <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
-<script src="/assets/road-resurfacings/app.js?t=20170409"></script>
+
+<script src="/assets/hc-maps/init.js"></script>
+<script src="/assets/hc-maps/road-resurfacings/router.js"></script>
+<script src="/assets/hc-maps/road-resurfacings/map.js"></script>
+<script src="/assets/hc-maps/road-resurfacings/results.js"></script>
+
+<script type="text/javascript">
+
+$(function() {
+	window.road_resurfacings_router = new HcMaps.Routers.RoadResurfacings({
+		url: 'https://maps.hillsboroughcounty.org/arcgis/rest/services/CoinMap/FY17PlannedResurfacing/MapServer/0',
+		template_path: '/assets/hc-maps/road-resurfacings/templates'
+	});
+	Backbone.history.start();
+});
+
+</script>
