@@ -7,4 +7,4 @@ title: lreom
 btn_tooltip: Get information about your property such as trash pickups, flood zone, evacuation zone, and more.
 ---
 
-* [Road Resurfacings](/road-resurfacings)
+* [Road Resurfacings]({{ '/road-resurfacings' | relative_url }})
