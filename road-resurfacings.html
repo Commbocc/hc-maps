@@ -6,31 +6,34 @@ layout: page
 title: Road Resurfacings
 permalink: /road-resurfacings/
 ---
+<p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 <!-- sitecore article html -->
 <noscript>
 	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </noscript>
 
-<figure class="embed-responsive embed-responsive-16by9 thumbnail">
-	<div id="mapDiv" class="embed-responsive-item">
-		<p class="h1 text-center">
-			<i class="fa fa-fw fa-5x fa-spinner fa-spin"></i>
-		</p>
-	</div>
-</figure>
+<section id="road-resurfacings">
+	<figure id="road-resurfacings-map" class="embed-responsive embed-responsive-16by9 thumbnail"></figure>
 
-<section id="results">
+	<article id="road-resurfacings-results">
+		<div class="form-group">
+			<div class="input-group">
+				<input type="text" id="road-resurfacings-filter" class="form-control" placeholder="Filter Projects...">
+				<span class="input-group-btn">
+					<button id="road-resurfacings-filter-reset" class="btn btn-warning" type="reset">Reset</button>
+				</span>
+			</div>
+		</div>
 
-	<div class="form-group">
-		<input type="text" id="search-filter" name="search-filter" value="" class="form-control" placeholder="Filter Projects...">
-	</div>
-
-	<div class="table-responsive">
-		<table class="table table-striped table-condensed table-bordered"></table>
-	</div>
-
+		<div class="table-responsive">
+			<table class="table table-striped table-condensed table-bordered"></table>
+		</div>
+	</article>
 </section>
+<!--  -->
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 <!-- sitecore script item -->
 <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
@@ -39,19 +42,18 @@ permalink: /road-resurfacings/
 <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
 <script src="https://js.arcgis.com/4.0/"></script>
 
-<script src="{{ '/assets/hc-maps/init.js' | relative_url }}"></script>
-<script src="{{ '/assets/hc-maps/road-resurfacings/router.js' | relative_url }}"></script>
-<script src="{{ '/assets/hc-maps/road-resurfacings/map.js' | relative_url }}"></script>
-<script src="{{ '/assets/hc-maps/road-resurfacings/results.js' | relative_url }}"></script>
-
 <script type="text/javascript">
-
 $(function() {
-	window.road_resurfacings_router = new HcMaps.Routers.RoadResurfacings({
-		url: 'https://maps.hillsboroughcounty.org/arcgis/rest/services/CoinMap/FY17PlannedResurfacing/MapServer/0',
-		template_path: "{{ '/assets/hc-maps/road-resurfacings/templates' | relative_url }}"
-	});
-	Backbone.history.start();
-});
 
+	window.working_dir = '/hc-maps/assets/hc-maps'
+
+	require([
+		working_dir+'/init.js',
+		working_dir+'/road-resurfacings/init.js'
+	], function() {
+		window.router = new HcMaps.RoadResurfacings.Routers.MainRouter;
+		Backbone.history.start();
+	});
+
+});
 </script>
