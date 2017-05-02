@@ -15,7 +15,9 @@ $(function() {
 				'esri/widgets/Home',
 				'esri/tasks/QueryTask',
 				'esri/tasks/support/Query',
-			], function(FeatureLayer, WebMap, MapView, Home, QueryTask, Query) {
+				'esri/symbols/SimpleLineSymbol',
+				'esri/Graphic'
+			], function(FeatureLayer, WebMap, MapView, Home, QueryTask, Query, SimpleLineSymbol, Graphic) {
 
 				var feat_layer = new FeatureLayer({
 					url: that.attributes.url
@@ -58,8 +60,22 @@ $(function() {
 						query.outSpatialReference = mapview.spatialReference;
 
 						queryTask.execute(query).then(function(results){
-							var extent = results.features[0].geometry.extent;
-							mapview.extent = extent.expand(3);
+							var geometry = results.features[0].geometry;
+
+							//
+							var symbol = new SimpleLineSymbol({
+								color: "black",
+								width: "5px",
+								style: "dash"
+							});
+
+							var line = new Graphic({
+								symbol: symbol,
+								geometry: geometry
+							});
+
+							mapview.extent = geometry.extent.expand(3);
+							mapview.graphics.add(line);
 						});
 					});
 				}
