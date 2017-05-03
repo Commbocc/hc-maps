@@ -8,7 +8,7 @@
 
 <tbody>
 
-	<% _.chain(collection).sortBy(function(m){ return m.feature.STREET; }).each(function(m){
+	<% _.each(collection, function(m) {
 		%>
 		<tr id="rr-<%= m.project_id %>" class="rr">
 

@@ -13,10 +13,16 @@ define [
 
 		initialize: ->
 			@feature = @attributes.attributes
-			@project_id = @attributes.attributes[@get('oid')]
+			@project_id = @feature[@get('oid')]
 			@project_path = '#projects/' + @project_id
 			return
 
+
+	HcMaps.RoadResurfacings.Collections.ResultCollection = Backbone.Collection.extend
+		model: HcMaps.RoadResurfacings.Models.ResultModel
+		comparator: (m) ->
+			return m.feature['STREET']
+			
 
 	HcMaps.RoadResurfacings.Views.ResultView = Backbone.View.extend
 
@@ -58,7 +64,7 @@ define [
 				query.where = that.where_expression(event.target.value)
 
 				feature_layer.queryFeatures(query).then (results) ->
-					that.collection = new Backbone.Collection results.features, {model: HcMaps.RoadResurfacings.Models.ResultModel}
+					that.collection = new HcMaps.RoadResurfacings.Collections.ResultCollection results.features
 					that.render()
 
 		where_expression: (value) ->
