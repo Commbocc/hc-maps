@@ -22,11 +22,11 @@ define [
 		model: HcMaps.RoadResurfacings.Models.ResultModel
 		comparator: (m) ->
 			return m.feature['STREET']
-			
+
 
 	HcMaps.RoadResurfacings.Views.ResultView = Backbone.View.extend
 
-		el: '#road-resurfacings-results'
+		el: '#road-resurfacings-results-container'
 
 		events:
 			'keyup #road-resurfacings-filter': 'filter_features'
@@ -40,9 +40,9 @@ define [
 
 		render: ->
 			if @collection.models.length > 0
-				@$el.find('table').html @template()
+				@$el.find('#road-resurfacings-results').html @template()
 			else
-				@$el.find('table').html $('<p class="h2 text-center">').text('No Results')
+				@$el.find('#road-resurfacings-results').html $('<p class="h2 text-center">').text('No Results')
 			return this
 
 		template: ->

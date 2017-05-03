@@ -1,27 +1,32 @@
 <!-- <#% console.log(collection) %> -->
 
-<thead>
-	<th colspan="2">Street</th>
-	<th>From</th>
-	<th >To</th>
-</thead>
+<div class="table-responsive">
+	<table class="table table-striped table-condensed table-bordered">
 
-<tbody>
+		<thead>
+			<th colspan="2">Street</th>
+			<th>From</th>
+			<th >To</th>
+		</thead>
 
-	<% _.each(collection, function(m) {
-		%>
-		<tr id="rr-<%= m.project_id %>" class="rr">
+		<tbody>
 
-			<td>
-				<a href="<%= m.project_path %>" class="btn btn-default btn-xs">
-					<i class="fa fa-fw fa-map-marker"></i>
-				</a>
-			</td>
-			<td><%= m.feature.STREET %></td>
-			<td><%= m.feature.FRSTNM %></td>
-			<td><%= m.feature.TOSTNM %></td>
-		</tr>
-		<%
-	}); %>
+			<% _.each(collection, function(m) {
+				%>
+				<tr id="rr-<%= m.project_id %>" class="rr">
 
-</tbody>
+					<td>
+						<a href="<%= m.project_path %>" class="btn btn-default btn-xs">
+							<i class="fa fa-fw fa-map-marker"></i>
+						</a>
+					</td>
+					<td><%= m.feature.STREET %></td>
+					<td><%= m.feature.FRSTNM %></td>
+					<td><%= m.feature.TOSTNM %></td>
+				</tr>
+				<%
+			}); %>
+
+		</tbody>
+	</table>
+</div>
