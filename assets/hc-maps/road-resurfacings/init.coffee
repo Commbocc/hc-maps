@@ -4,7 +4,7 @@
 define [
 	working_dir+'/road-resurfacings/map_view.js'
 	working_dir+'/road-resurfacings/results_view.js'
-], (MapView, ResultsView) ->
+], (MapView, ResultView) ->
 
 	HcMaps.RoadResurfacings.Routers.MainRouter = Backbone.Router.extend
 
@@ -15,7 +15,7 @@ define [
 				router: this
 				url: @feature_url
 
-			@results_view = new HcMaps.RoadResurfacings.Views.ResultsView
+			@results_view = new HcMaps.RoadResurfacings.Views.ResultView
 				url: @feature_url
 
 		routes:

@@ -18,7 +18,7 @@ define [
 			return
 
 
-	HcMaps.RoadResurfacings.Views.ResultsView = Backbone.View.extend
+	HcMaps.RoadResurfacings.Views.ResultView = Backbone.View.extend
 
 		el: '#road-resurfacings-results'
 
@@ -53,7 +53,6 @@ define [
 			feature_layer = new FeatureLayer(url: @feature_url).load()
 
 			feature_layer.then ->
-
 				query = new Query
 				query.outFields = ["*"]
 				query.where = that.where_expression(event.target.value)
@@ -71,4 +70,4 @@ define [
 				return '1=1'
 
 
-	return HcMaps.RoadResurfacings.Views.ResultsView
+	return HcMaps.RoadResurfacings.Views.ResultView
