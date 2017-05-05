@@ -66,18 +66,17 @@ define [
 		highlight_project: (id) ->
 			@scrollTo()
 
-			that = this
-			@esrimapview.then ->
+			@esrimapview.then =>
 				queryTask = new QueryTask
-					url: that.feature_url
+					url: @feature_url
 
 				query = new Query
 				query.returnGeometry = true
 				query.outFields = ["*"]
 				query.where = "OBJECTID = " + id
-				query.outSpatialReference = that.esrimapview.spatialReference
+				query.outSpatialReference = @esrimapview.spatialReference
 
-				queryTask.execute(query).then (results) ->
+				queryTask.execute(query).then (results) =>
 					geometry = results.features[0].geometry
 
 					symbol = new SimpleLineSymbol
@@ -85,12 +84,12 @@ define [
 						width: "7px"
 						style: "short-dot"
 
-					that.line_graphic = new Graphic
+					@line_graphic = new Graphic
 						symbol: symbol
 						geometry: geometry
 
-					that.esrimapview.extent = geometry.extent.expand(3);
-					that.esrimapview.graphics.add(that.line_graphic);
+					@esrimapview.extent = geometry.extent.expand(3);
+					@esrimapview.graphics.add(@line_graphic);
 
 
 	return HcMaps.RoadResurfacings.Views.MapView

@@ -54,18 +54,16 @@ define [
 			@filter_features target: value: null
 
 		filter_features: (event) ->
-			that = this
-
 			feature_layer = new FeatureLayer(url: @feature_url).load()
 
-			feature_layer.then ->
+			feature_layer.then =>
 				query = new Query
 				query.outFields = ["*"]
-				query.where = that.where_expression(event.target.value)
+				query.where = @where_expression(event.target.value)
 
-				feature_layer.queryFeatures(query).then (results) ->
-					that.collection = new HcMaps.RoadResurfacings.Collections.ResultCollection results.features
-					that.render()
+				feature_layer.queryFeatures(query).then (results) =>
+					@collection = new HcMaps.RoadResurfacings.Collections.ResultCollection results.features
+					@render()
 
 		where_expression: (value) ->
 			if value
